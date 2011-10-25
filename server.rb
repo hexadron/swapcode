@@ -1,7 +1,5 @@
 require_relative 'models'
 
-# TODO, cada actualización crea un link nuevo o_o
-
 require 'active_support'
 require 'coffee-script'
 require 'haml'
@@ -56,9 +54,6 @@ post '/' do
     else
       u = Url.new({:content => content})
       u.save
-      puts "%%" * 100
-      puts u.id
-      puts "%%" * 100
     end
     id_and_url = { :id => u.id, :url => "#{base_url}/view/#{u.url}"}
     ActiveSupport::JSON.encode(id_and_url)
