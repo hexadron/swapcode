@@ -8,7 +8,14 @@ require 'sass'
 require 'pg'
 
 set :haml, :format => :html5
+set :database_extras, {:pool => 20, :timeout => 3000}
 set :database, (ENV['DATABASE_URL'] or 'postgres://postgres:syd@localhost:5433/swapcode')
+
+helpers do
+  def base_url
+    @base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
+  end
+end
 
 class Url < ActiveRecord::Base
   after_initialize      :gen_url
@@ -47,7 +54,7 @@ post '/' do
 end
 
 get '/view/:url' do
-  page = Url.where(:url => params[:url]).first
+  page = Url.select('content').where(:url => params[:url]).first
   if page.nil?
     haml :index
   else
@@ -66,8 +73,7 @@ def build_html page
   
   u = Url.new({:content => content})
   if u.save
-    app = 'http://localhost:4567'
-    "#{app}/view/#{u.url}"
+    "#{base_url}/view/#{u.url}"
   else
     "error"
   end

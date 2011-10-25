@@ -1,26 +1,15 @@
-!!! 5
-%html{:lang => "es"}
-	%head
-		%meta{:charset => "utf-8"}
-		%link{:rel => "stylesheet", :href => "/css/style.css"}
-		%title SwapCode
-	%body
-		%header
-			%h1 SwapCode
-		%form#launchform
-			%ul
-				%li.code#haml
-					%p haml
-					%textarea
-				%li.code#sass
-					%p sass
-					%textarea
-				%li.code#coffee
-					%p coffee
-					%textarea
-						$ -> alert 'hello world!'
-				%li#launch
-					%input{:type => "button", :value => "Link!"}
-		%script{:type => "text/javascript", :src =>"/js/lib/jquery.min.js"}
-		%script{:type => "text/javascript", :src => "/js/lib/coffee-script.js"}
-		%script{:type => "text/coffeescript", :src => "/js/launch.coffee"}
+%header
+	%h1 SwapCode
+%form#launchform
+	%ul
+		%li.code#haml
+			%p haml
+			%textarea
+		%li.code#sass
+			%p sass
+			%textarea
+		%li.code#coffee
+			%p coffee
+			%textarea
+		%li#launch
+			%input{:type => "button", :value => "Link!"}
