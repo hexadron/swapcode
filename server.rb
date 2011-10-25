@@ -66,7 +66,8 @@ def build_html page
   
   u = Url.new({:content => content})
   if u.save
-    "http://localhost:4567/view/#{u.url}"
+    app = 'http://localhost:4567'
+    "#{app}/view/#{u.url}"
   else
     "error"
   end
