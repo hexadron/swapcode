@@ -45,10 +45,9 @@ end
 
 def build_html page
   js_pos  = page[:html].index('</body>')
-  with_js = append_at page[:html], js_pos, "
-    <script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
-    <script type='text/javascript'>#{page[:js]}</script>
-    "
+  with_js = append_at page[:html], js_pos,
+    "<script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
+    <script type='text/javascript'>#{page[:js]}</script>"
     
   css_pos = with_js.index('</head>')
   content = append_at with_js, css_pos, "<style>#{page[:css]}</style>"
