@@ -26,10 +26,22 @@ get '/' do
   haml :index
 end
 
-post '/' do
-  js   = CoffeeScript.compile(params[:coffee])
-  css  = Sass.compile(params[:sass], {:syntax => "sass"})
-  html = Haml::Engine.new(params[:haml]).render
+post '/' do 
+  begin
+    js  = CoffeeScript.compile(params[:coffee])
+  rescue
+    js  = ""
+  end  
+  begin
+    css = Sass.compile(params[:sass], {:syntax => "sass"})
+  rescue
+    css = ""
+  end  
+  begin
+    html = Haml::Engine.new(params[:haml]).render
+  rescue
+    css = ""
+  end  
   
   build_html({:html => html, :css => css, :js => js})
 end
