@@ -1,11 +1,12 @@
-require 'digest/md5'
-require 'alphadecimal'
+require_relative 'models'
+
+# TODO, cada actualización crea un link nuevo o_o
+
+require 'active_support'
 require 'coffee-script'
 require 'haml'
 require 'sinatra'
-require 'sinatra/activerecord'
 require 'sass'
-require 'pg'
 
 set :database_extras, {:pool => 20, :timeout => 3000}
 set :database, (ENV['DATABASE_URL'] or 'postgres://postgres:syd@localhost:5433/swapcode')
@@ -16,66 +17,64 @@ helpers do
   end
 end
 
-class Url < ActiveRecord::Base
-  after_initialize      :gen_url
-  validates_presence_of :url
-  
-  def gen_url
-    self.url = Digest::MD5.hexdigest(self.content)
-    self
-  end
-end
-
 # Routes/Controller
 
 get '/' do
   haml :index
 end
 
-post '/' do 
-  begin
-    js  = CoffeeScript.compile(params[:coffee])
-  rescue
-    js  = ""
-  end  
-  begin
-    css = Sass.compile(params[:sass], {:syntax => "sass"})
-  rescue
-    css = ""
-  end  
-  begin
-    html = Haml::Engine.new(params[:haml]).render
-  rescue
-    css = ""
-  end  
+post '/' do
+  errors = {}
+  unless params[:haml] == ""
+    begin
+      html = Haml::Engine.new(params[:haml]).render
+    rescue => err
+      errors[:haml] = err.to_s
+    end
+    begin
+      js  = CoffeeScript.compile(params[:coffee])
+    rescue => err
+      errors[:coffeescript] = err.to_s
+    end
+    begin
+      css = Sass.compile(params[:sass], {:syntax => "sass"})
+    rescue => err
+      errors[:sass] = err.to_s
+    end
+  end
   
-  build_html({:html => html, :css => css, :js => js})
+  if errors.length > 0
+    ActiveSupport::JSON.encode(errors)
+  else
+    content = params[:haml] != "" \
+      ? build_html({:html => html, :css => css, :js => js}) \
+      : ""
+    if params[:id]
+      u = Url.find_by_id(params[:id])
+      u.content = content
+      u.save
+    else
+      u = Url.find_or_create_by_content content
+    end
+    id_and_url = { :id => u.id, :url => "#{base_url}/view/#{u.url}"}
+    ActiveSupport::JSON.encode(id_and_url)
+  end
 end
 
 get '/view/:url' do
   page = Url.select('content').where(:url => params[:url]).first
-  if page.nil?
-    haml :index
-  else
-    page.content
-  end
+  
+  page.nil?? haml(:index) : page.content
 end
 
 def build_html page
   js_pos  = page[:html].index('</body>')
-  with_js = append_at page[:html], js_pos,
+  with_js = append_at page[:html], js_pos, 
     "<script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
     <script type='text/javascript'>#{page[:js]}</script>"
     
   css_pos = with_js.index('</head>')
-  content = append_at with_js, css_pos, "<style>#{page[:css]}</style>"
-  
-  u = Url.new({:content => content})
-  if u.save
-    "#{base_url}/view/#{u.url}"
-  else
-    "error"
-  end
+  append_at(with_js, css_pos, "<style>#{page[:css]}</style>")
 end
 
 def append_at(source, pos, what)
