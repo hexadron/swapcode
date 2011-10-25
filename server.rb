@@ -7,7 +7,6 @@ require 'sinatra/activerecord'
 require 'sass'
 require 'pg'
 
-set :haml, :format => :html5
 set :database_extras, {:pool => 20, :timeout => 3000}
 set :database, (ENV['DATABASE_URL'] or 'postgres://postgres:syd@localhost:5433/swapcode')
 
