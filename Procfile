@@ -1,1 +1,1 @@
-web: ruby -rubygems server.rb
+web: bundle exec ruby server.rb -p $PORT
