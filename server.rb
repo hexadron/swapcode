@@ -54,7 +54,11 @@ post '/' do
       u.content = content
       u.save
     else
-      u = Url.find_or_create_by_content content
+      u = Url.new({:content => content})
+      u.save
+      puts "%%" * 100
+      puts u.id
+      puts "%%" * 100
     end
     id_and_url = { :id => u.id, :url => "#{base_url}/view/#{u.url}"}
     ActiveSupport::JSON.encode(id_and_url)
@@ -62,7 +66,7 @@ post '/' do
 end
 
 get '/view/:url' do
-  page = Url.select('content').where(:url => params[:url]).first
+  page = Url.select('content, url').where(:url => params[:url]).first
   
   page.nil?? haml(:index) : page.content
 end
