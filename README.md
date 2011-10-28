@@ -13,7 +13,7 @@ Como estoy usando el hosting gratuito de heroku, traten de no abusar de él, por
 v.0.1
 -----
 - Incluye compilación de:
-	* JavaScript a CoffeeScript
-	* CSS a LESS y SASS
-	* HTML a HAML
+	* CoffeeScript / JS
+	* LESS y SASS / CSS
+	* HAML / HTML
 - jQuery incluido por defecto en todas las páginas.
