@@ -4,7 +4,7 @@ require 'sinatra/activerecord'
 class SwapCode < Sinatra::Application
   
   set     :database_extras, {:pool => 20, :timeout => 3000}
-  set     :database, (ENV['DATABASE_URL'] or 'postgres://postgres:syd@localhost:5433/swapcode')
+  set     :database, (ENV['DATABASE_URL'] or 'mysql2://root:@localhost/swapcode')
   enable  :sessions
   
   helpers do
