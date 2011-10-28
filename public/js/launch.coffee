@@ -12,7 +12,6 @@ $ ->
 	
 	$('#launch').click (e) ->
 		e.preventDefault()
-		alert $('input[name=_css]:checked').val()
 		source =
 			haml: code 'haml'
 			css_lang: $('input[name=_css]:checked').val()
