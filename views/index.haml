@@ -5,8 +5,10 @@
 		%li.code#haml
 			%p haml
 			%textarea
-		%li.code#sass
-			%p sass
+		%li.code#_css
+			%div
+				%input{:type => "radio", :name => "_css", :checked => true, :value => "sass"} sass
+				%input{:type => "radio", :name => "_css", :checked => false, :value => "less"} less
 			%textarea
 		%li.code#coffee
 			%p coffee

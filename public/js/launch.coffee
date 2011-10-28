@@ -1,7 +1,7 @@
 $ ->
 	# bad code, this must be in the html but i can't with haml and textarea's freak indentation
 	
-	$('#sass textarea').val "body\n\tbackground-color: hsl(0, 0, 0)\n\tcolor: hsl(0, 0, 100)"
+	$('#_css textarea').val "body\n\tbackground-color: hsl(0, 0, 0)\n\tcolor: hsl(0, 0, 100)"
 	$('#haml textarea').val "!!! 5\n%html\n\t%head\n\t%body\n\t\t%h1 Say Hello"
 	$('#coffee textarea').val "$ -> $('h1').append ', and wave goodbye'"
 	
@@ -12,10 +12,11 @@ $ ->
 	
 	$('#launch').click (e) ->
 		e.preventDefault()
-		
+		alert $('input[name=_css]:checked').val()
 		source =
 			haml: code 'haml'
-			sass: code 'sass'
+			css_lang: $('input[name=_css]:checked').val()
+			css_code: code '_css'
 			coffee: code 'coffee'
 			id: $('html').data('_id')
 			
