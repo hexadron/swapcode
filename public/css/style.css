@@ -1,5 +1,6 @@
 iframe {
 	width: 100%;
+	height: 41%;
 }
 
 header h1 {
@@ -14,4 +15,12 @@ header h1 {
 
 #launch li {
 	display: inline-block;
+}
+
+html, body {
+	background-color: hsl(50, 50%, 80%);
+}
+
+.CodeMirror {
+	background-color: hsl(50, 50%, 100%);
 }
