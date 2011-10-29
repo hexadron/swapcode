@@ -31,7 +31,7 @@ $ ->
 		$.post '/', source, (res) ->
 			exp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
 			r = JSON.parse(res)
-			if r.url?				
+			if r.url?
 				if r.url.match(exp)
 					$('#url_location').html("<a href='#{r.url}' target='_blank'>open in new tab</a>")
 					$('iframe').attr 'src', r.url
