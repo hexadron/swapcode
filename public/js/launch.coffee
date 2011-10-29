@@ -1,4 +1,5 @@
 $ ->
+	
 	# bad code, this must be in the html but i can't with haml and textarea's freak indentation
 	
 	$('#_css textarea').val "body\n\tbackground-color: hsl(0, 0, 0)\n\tcolor: hsl(0, 0, 100)"
@@ -7,16 +8,24 @@ $ ->
 	
 	# end
 	
-	code = (lang) ->
-		$("##{lang} textarea").val()
+	# codemirror
 	
-	$('#launch').click (e) ->
+	jseditor = CodeMirror.fromTextArea $('#coffee textarea')[0], 
+		lineNumbers: true
+	
+	csseditor = 	CodeMirror.fromTextArea $('#_css textarea')[0], 
+		lineNumbers: true
+
+	htmleditor = 	CodeMirror.fromTextArea $('#haml textarea')[0], 
+		lineNumbers: true
+
+	$('#launch input').click (e) ->
 		e.preventDefault()
 		source =
-			haml: code 'haml'
+			haml: htmleditor.getValue()
 			css_lang: $('input[name=_css]:checked').val()
-			css_code: code '_css'
-			coffee: code 'coffee'
+			css_code: csseditor.getValue()
+			coffee: jseditor.getValue()
 			id: $('html').data('_id')
 			
 		$.post '/', source, (res) ->

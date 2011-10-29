@@ -2,18 +2,23 @@
 	%h1 SwapCode
 %form#launchform
 	%ul
-		%li.code#haml
-			%p haml
-			%textarea
-		%li.code#_css
-			%div
-				%input{:type => "radio", :name => "_css", :checked => true, :value => "sass"} sass
-				%input{:type => "radio", :name => "_css", :checked => false, :value => "less"} less
-			%textarea
-		%li.code#coffee
-			%p coffee
-			%textarea
-		%li#launch
-			%input{:type => "button", :value => "Compile"}
-		%li#url_location
-%iframe
+		.row
+			%li.code#haml.span9
+				%p haml
+				%textarea
+			%li.code#_css.span9
+				%div
+					%input{:type => "radio", :name => "_css", :checked => true, :value => "sass"} sass
+					%input{:type => "radio", :name => "_css", :checked => false, :value => "less"} less
+				%textarea
+		.row
+			%li.code#coffee.span9
+				%p coffee
+				%textarea
+			%li#launch.span9
+				%ul
+					%li
+						%input{:type => "button", :value => "Compile"}
+					%li
+						#url_location
+				%iframe

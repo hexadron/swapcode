@@ -1,13 +1,17 @@
-body {
-	background-color: hsl(0, 0%, 95%);
+iframe {
 	width: 100%;
 }
 
-form {
-	width: 30%;
-	float: left;
+header h1 {
+	text-align: center;
+	margin: 1em auto;
 }
 
-iframe {
-	width: 60%;
+#launchform {
+	margin: auto;
+	width: 80%;
+}
+
+#launch li {
+	display: inline-block;
 }
