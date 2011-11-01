@@ -10,6 +10,14 @@ class SwapCode < Sinatra::Application
     haml :index
   end
   
+  get '/app' do
+    haml :app
+  end
+  
+  get '/demo' do
+    File.read File.join('public', 'demo.html')
+  end
+  
   post '/' do
     errors = {}
     

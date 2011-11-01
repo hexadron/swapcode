@@ -3,14 +3,10 @@
 	%head
 		%meta{:charset => "utf-8"}
 		%link{:rel => "stylesheet", :href => "/css/libs/bootstrap.css"}
-		%link{:rel => "stylesheet", :href => "/css/libs/codemirror.css"}
-		%link{:rel => "stylesheet", :href => "/css/libs/themes/default.css"}
-		%link{:rel => "stylesheet", :href => "/css/style.css"}
+		=yield_content :stylesheets
 		%title SwapCode
 	%body
 		=yield
 		%script{:type => "text/javascript", :src =>"/js/lib/jquery.min.js"}
-		%script{:type => "text/javascript", :src =>"/js/lib/codemirror.js"}
-		%script{:type => "text/javascript", :src =>"/js/lib/modes/coffeescript.js"}
+		=yield_content :scripts
 		%script{:type => "text/javascript", :src => "/js/lib/coffee-script.js"}
-		%script{:type => "text/coffeescript", :src => "/js/launch.coffee"}

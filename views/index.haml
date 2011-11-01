@@ -1,24 +1,52 @@
-%header
-	%h1 SwapCode
-%form#launchform
+-content_for :stylesheets do
+	%link{:rel => "stylesheet", :type => "text/css", :href => "/css/index.css"}
+
+-content_for :scripts do
+	%script{:type => 'text/coffeescript', :src => '/js/index.coffee'}
+
+%section#main_menu
 	%ul
-		.row
-			%li.code#haml.span9
-				%p haml
-				%textarea
-			%li.code#_css.span9
-				%div
-					%input{:type => "radio", :name => "_css", :checked => true, :value => "sass"} sass
-					%input{:type => "radio", :name => "_css", :checked => false, :value => "less"} less
-				%textarea
-		.row
-			%li.code#coffee.span9
-				%p coffee
-				%textarea
-			%li#launch.span9
-				%ul
-					%li
-						%input{:type => "button", :value => "Compile"}
-					%li
-						#url_location
-				%iframe
+		%li
+			%a{:href => "Código"} Source
+		%li
+			%a{:href => "Lenguajes"} Languages
+		%li
+			%a{:href => "Acerca de SwapCode"} About
+
+%header
+	%h1
+		SwapCode
+	%input#try{:type => "button", :value => "Try it !"}
+
+%section#expo
+	%ul
+		%li#code
+			%pre
+				:preserve
+					/ haml
+					- name = "SwapCode"
+					%h1= name
+					
+					// sass
+					h1
+					  color: lighten(red, 20%)
+					
+					# coffeescript
+					$ -> $('#button').click ->
+					  $('h1').fadeTo 'slow', 0.1, -> 
+					    $(@).fadeTo 'slow', 1
+			%p
+				Write...
+		%li#arrow
+			%div
+		%li#view
+			%iframe{:src => "/demo"}
+			%p
+				and look.
+
+%section#languages
+	%ul
+		%li{:href =>'#'} haml
+		%li{:href =>'#'} coffeescript
+		%li{:href =>'#'} sass
+		%li{:href =>'#'} less

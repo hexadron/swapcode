@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'sinatra/content_for'
 
 class SwapCode < Sinatra::Application
 
@@ -12,7 +13,7 @@ class SwapCode < Sinatra::Application
       @base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
     end
   end
-  
+
 end
 
 require_relative 'models/init'
