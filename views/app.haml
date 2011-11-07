@@ -1,33 +1,44 @@
--content_for :stylesheets do
-	%link{:rel => "stylesheet", :href => "/css/libs/codemirror.css"}
-	%link{:rel => "stylesheet", :href => "/css/libs/themes/default.css"}
-	
--content_for :scripts do
-	%script{:type => "text/javascript", :src =>"/js/lib/codemirror.js"}
-	%script{:type => "text/javascript", :src =>"/js/lib/modes/coffeescript.js"}
-	%script{:type => "text/coffeescript", :src => "/js/launch.coffee"}
-	
-%header
-	%h1 SwapCode
-%form#launchform
-	%ul
-		.row
-			%li.code#haml.span9
-				%p haml
-				%textarea
-			%li.code#_css.span9
-				%div
-					%input{:type => "radio", :name => "_css", :checked => true, :value => "sass"} sass
-					%input{:type => "radio", :name => "_css", :checked => false, :value => "less"} less
-				%textarea
-		.row
-			%li.code#coffee.span9
-				%p coffee
-				%textarea
-			%li#launch.span9
-				%ul
-					%li
-						%input{:type => "button", :value => "Compile"}
-					%li
-						#url_location
-				%iframe
+- content_for :scripts do
+	%script{:type => "text/javascript", :src => "/js/lib/chosen.jquery.min.js"}
+	%script{:type => "text/javascript", :src => "/js/lib/codemirror.js"}
+	%script{:type => "text/javascript", :src => "/js/lib/modes/coffeescript.js"}
+	%script{:type => "text/coffeescript", :src => "/js/swapcode.coffee"}
+
+.wrapper
+	%header
+		%h1 Swapcode
+	.content.editor
+		%h3 Choose a templating engine
+		%div#select_template
+			%select{"data-placeholder" => "Choose a templating Engine"}
+				%option{:value => "haml"} Haml
+				%option{:value => "html"} HTML5
+		%textarea.template
+			:preserve
+				!!! 5
+				%html
+					%head
+					%body
+						%h1 Say Hello
+
+		%h3 Choose a stylesheet engine
+		%div#select_style
+			%select{"data-placeholder" => "Choose a stylesheet engine"}
+				%option{:value => "sass"} Sass
+				%option{:value => "less"} Less
+				%option{:value => "css"} CSS
+		%textarea.style
+			:preserve
+				body
+					background-color: hsl(0, 0, 0)
+					color: hsl(0, 0, 100)
+		
+		%h3 Choose a scripting language
+		%div#select_script
+			%select{"data-placeholder" => "Choose a scripting language"}
+				%option{:value => "coffeescript"} CoffeeScript
+				%option{:value => "javascript"} JavaScript
+		%textarea.scripting
+			:preserve
+				$ -> $('h1').append ', and wave goodbye'
+		%a.button{:href => ""} Compile

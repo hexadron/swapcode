@@ -13,48 +13,37 @@ class SwapCode < Sinatra::Application
   get '/app' do
     haml :app
   end
-  
-  get '/demo' do
-    File.read File.join('public', 'demo.html')
-  end
-  
+
   post '/' do
     errors = {}
     
     unless params[:haml] == ""
       begin
-        html = Haml::Engine.new(params[:haml]).render
+        html = template(params[:templ_lang], params[:templ_code])
       rescue => err
-        errors[:haml] = err.to_s
+        errors[params[:templ_lang]] = err.to_s
       end
       begin
-        js  = CoffeeScript.compile(params[:coffee])
+        js = script(params[:scrpt_lang], params[:scrpt_code])
       rescue => err
-        errors[:coffeescript] = err.to_s
+        errors[params[:scrpt_lang]] = err.to_s
       end
-      if params[:css_lang] == "sass"
-        begin
-          css = Sass.compile(params[:css_code], {:syntax => "sass"})
-        rescue => err
-          errors[params[:css_lang]] = err.to_s
-        end
-      else
-        begin
-          css = Less::Parser.new.parse(params[:css_code]).to_css(:compress => true)
-        rescue => err
-          errors[params[:css_lang]] = err.to_s
-        end
+      begin
+        css = style(params[:style_lang], params[:style_code])
+      rescue => err
+        errors[params[:style_lang]] = err.to_s
       end
     end
     
     if errors.length > 0
       ActiveSupport::JSON.encode(errors)
     else
-      unless params[:haml] == ""
-        content = build_html({:html => html, :css => css, :js => js})
-      else
+      if params[:templ_code] == ""
         content = ""
-      end      
+      else
+        content = build_html(html, css, js)
+      end
+      
       if params[:id]
         u = Url.find_by_id(params[:id])
         u.content = content
@@ -68,14 +57,43 @@ class SwapCode < Sinatra::Application
     end
   end
   
-  def build_html page
-    js_pos  = page[:html].index('</body>')
-    with_js = append_at page[:html], js_pos, 
+  def template(lang, code)
+    case lang
+    when 'html'
+      code
+    when 'haml'
+      Haml::Engine.new(code).render
+    end
+  end
+  
+  def script(lang, code)
+    case lang
+    when 'javascript'
+      code
+    when 'coffeescript'
+      CoffeeScript.compile(code)
+    end
+  end
+
+  def style(lang, code)
+    case lang
+    when 'css'
+      code
+    when 'sass'
+      Sass.compile(code, {:syntax => "sass"})
+    when 'less'
+      Less::Parser.new.parse(code).to_css(:compress => true)
+    end
+  end
+  
+  def build_html html, css, js
+    js_pos  = html.index('</body>')
+    with_js = append_at html, js_pos, 
       "<script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
-      <script type='text/javascript'>#{page[:js]}</script>"
-      
+      <script type='text/javascript'>#{js}</script>"
     css_pos = with_js.index('</head>')
-    append_at(with_js, css_pos, "<style>#{page[:css]}</style>")
+    
+    append_at(with_js, css_pos, "<style>#{css}</style>")
   end
   
   def append_at(source, pos, what)

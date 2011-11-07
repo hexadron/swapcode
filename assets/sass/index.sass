@@ -1,185 +1,99 @@
-@import "compass/css3/images"
+@import compass/reset
+@import compass/css3
 
-$bodycolor: hsl(340, 0, 100)
-$menucolor: hsl(0, 0, 20)
-$monotype:  "Monaco", "Consolas", "Ubuntu Mono", mono-space
+em
+  font-style: oblique
+  
+pre
+  font-family: "Monaco", "Menlo", "Meslo", "Consolas", monospace
+  line-height: 1.1em
 
-html, body
-	background-color: $bodycolor
-
-body
-	overflow: hidden
-	margin: auto
-	width: 100%
-
-#main_menu, #expo, #expo ul
-	width: 67%
-	margin: auto
-
-$shadow:		0px 0px 5px hsl(0, 0, 40)
-$headcolor: hsl(340, 67, 38)
+html
+  background: hsl(230, 20, 20)
+  font-family: "Calibri", sans-serif
 
 header
-	background-color: $headcolor
-	border:
-		top: 3px solid $menucolor
-		bottom: 3px solid $menucolor
-	overflow: hidden
-	padding: 0em 16%
-	h1
-		color: hsl(0, 0, 90)
-		float: left
-		font: 2.7em "Lucida Grande"
-		padding: 1em 1em 0em 3.5em
-	input
-		background-color: hsl(160, 60, 40)
-		border: 1px solid hsl(0, 0, 30)
-		border-radius: 5px
-		box-shadow: inset $shadow
-		text-shadow: 0px 0px 4px hsl(0, 0, 0)
-		color: $bodycolor
-		float: right
-		font: 2.2em "Lucida Grande"
-		padding: .4em .7em
-		margin: 1em
-		&:hover
-			text-shadow: 0px 0px 4px hsl(0, 0, 30)
-			background-color: hsl(160, 80, 40)
+  color: white
+  
+  h1
+    font-size: 3em
+    margin: 0.3em
 
-#main_menu
-	ul
-		background-color: $menucolor
-		margin: 0em
-		overflow: hidden
-		padding: 1em
-		padding-left: 1.6em
-		li
-			display: inline-block
-			padding: .5em
-			padding-right: 2em
-			a
-				color: hsl(0, 0, 90)
-				font: 1.3em "Lucida Grande"
-				&:hover
-					text-decoration: none
-					color: hsl(0, 0, 100)
-					
-#expo
-	overflow: hidden
-	box-shadow: 0px 3px 3px hsl(0, 0, 40)
-	background-color: $menucolor
-	padding: 3.5em 4em 1.8em 4em
-	margin: 0 auto
-	display: table
-	p
-		text-align: center
-	ul
-		width: 100%
-		margin: auto
-		li
-			display: inline-block
-			> pre, > iframe
-				height: 230px
-				min-height: 230px
-				min-width: 230px
-				box-shadow: inset $shadow
-			> pre
-				border: none
-				font: 1.1em $monotype
-				padding: 1.2em 1.5em
-				text-align: left
-				color: hsl(0, 0, 30)
-			> p
-				color: hsl(0, 0, 90)
-				font: 2px "Lucida Grande"
-				letter-spacing: .2em
-				opacity: 0
-				padding-top: 1em
-				padding-bottom: .6em
-				text-transform: lowercase
-		#code
-			width: 44%
-		#view
-			width: 44%
-			iframe
-				width: 96%
-				border: 1px solid gray
-				border-radius: 3px
-				padding: 1.2em 1em
-				margin-bottom: 14px
-				background-color: whiteSmoke
-		#arrow
-			width: 10%
-			height: 100%
-			background: url()
+.wrapper
+  min-width: 360px
+  max-width: 950px
+  margin: auto
+  margin-bottom: 1.5em
+  
+.content
+  background: white
+  border-top: 0.25em solid hsl(30, 100, 60)
+  padding: 1em
+  padding-right: 1.25em
+  margin-top: 1em
+  overflow: auto
+  +box_shadow()
 
-#languages
-	ul
-		width: 100%
-		padding: 0em
-		margin: 0em
-		overflow: hidden
-		text-align: center
-	li
-		list-style: none
-		display: inline-block
+.hero
+  margin-bottom: 1.5em
 
-// MEDIA QUERYS
+  h2
+    font-size: 2em
+    line-height: 1.5em
+  
+  p
+    font-size: 1.35em
+    line-height: 1.5em
+    color: hsl(0, 0, 50)
+    
+.human
+  float: left
+  width: 17em
+  margin: 0 0.3em
+  
+  h3
+    font-size: 1.25em
+    line-height: 1.5em
+  
+  p
+    line-height: 1.5em
+    
+  pre
+    margin: 1em 0
+  
+.keyword
+  color: hsl(30, 70, 45)
+  
+.special
+  color: hsl(210, 50, 50)
 
-// WIDTHS of EXPO and MAIN MENU
-// menor a 1230px
-@media screen and (max-width: 1230px)
-	#expo, #main_menu
-		width: 75%
+.string
+  color: hsl(120, 50, 40)
+  
+.button
+  +background_image(linear_gradient(hsl(200, 50, 60), hsl(210, 50, 40)))
+  +border_radius()
+  +box_shadow(inset 0 0.1em 0.01em hsl(210, 50, 80), inset 0 -0.1em 0.01em hsl(210, 50, 35))
+  border: 0.1em solid hsl(210, 50, 30)
+  display: inline-block
+  color: white
+  margin: 1em 0
+  padding: 0.75em 1em
+  text-decoration: none
+  text-shadow: 0 0.075em 0.1em hsl(210, 50, 20)
 
-// menor a 1100
-@media screen and (max-width: 1105px)
-	#expo, #main_menu
-		width: 85%
+.hero .button
+  font-size: 1.5em
+  
+.editor h3
+  font-size: 1.2em
+  margin-bottom: 1em
 
-// menor a 967
-@media screen and (max-width: 967px)
-	#expo, #main_menu
-		width: 100%
-		
-// menor a 800
-@media screen and (max-width: 800px)
-	#expo, #main_menu
-		width: 100%
-	#expo
-		ul
-			text-align: center
-			#arrow, #view
-				display: none
-			#code
-				width: 70%
-
-// HEADER ELEMENTS
-// menor a 771 
-@media screen and (max-width: 771px)
-	header h1
-		padding-left: 1em
-
-@media screen and (max-width: 641px)
-	header
-		h1
-			padding-left: 0em
-
-@media screen and (max-width: 590px)
-	header
-		text-align: center
-		h1
-			padding-right: 0em
-		#try
-			width: 100%
-			margin: 1em auto
-		h1, input
-			float: none
-	#code pre
-		padding-right: 0em
-
-@media screen and (max-width: 569px)
-	#expo ul #code
-		width: 100%
-		pre
-			height: 240px
+.editor select
+  width: 15em
+  
+.editor textarea
+  font-size: inherit
+  margin: 1em 0
+  height: 15em
+  width: 100%

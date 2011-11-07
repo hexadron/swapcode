@@ -1,7 +1,47 @@
--content_for :stylesheets do
-	%link{:rel => "stylesheet", :type => "text/css", :href => "/css/index.css"}
+.wrapper
+  %header
+    %h1 Swapcode
+  .content
+    .hero
+      %h2 The awesome online editor
+      %p We enjoy freedom. We hate being unable to get things done when we don't have access to our computers. Let's use the web to solve that.
+      %a.button{:href => "/app"} Try Swapcode
+      %h2 Tools we love
+      %p Swapcode grants you access to the same tools we use for development:
+    .human
+      %h3 Haml
+      %p
+        A language that made for rapid HTML development, removing unnecesary markup.
+        %em Markup should be beautiful.
+      %pre
+        :preserve
+          <span class="keyword">%html</span>
+            <span class="keyword">%head</span>
+              <span class="keyword">%title</span> <span class="string">"Hola!"</span>
+            <span class="keyword">%body</span>
+              <span class="special">#wrapper</span>
+                <span class="keyword">%h1</span> <span class="string">"O hai!"</span>
+    .human
+      %h3 CoffeeScript
+      %p A beautiful language that compiles into JavaScript. If you like Python or Ruby, you'll feel right at home.
+      %pre
+        :preserve
+          alert_all <span class="keyword">=</span> <span class="special">(@people)</span> <span class="keyword">-></span>
+            alert p <span class="keyword">for</span> p <span class="keyword">in</span> <span class="special">@people</span>
 
--content_for :scripts do
-	%script{:type => 'text/coffeescript', :src => '/js/index.coffee'}
+          <span class="keyword">class</span> User
+            initialize <span class="keyword">=</span> <span class="special">(@name)</span> <span class="keyword">-></span>
 
-%a{href: '/app'} Try
+          be_happy <span class="keyword">if</span> cake?
+
+    .human
+      %h3 Sass
+      %p CSS on steroids. Functions, variables, mixins, data types. An awesome syntax. You'll never want to go vanilla CSS again.
+      %pre
+        :preserve
+          <span class="keyword">$main:</span> <span class="special">hsl(210, 45, 50)</span>
+
+          html
+            <span class="keyword">+border-radius(<span class="special">0.25em</span>)</span>
+          a
+            <span class="keyword">color:</span> <span class="string">$main</span> 
