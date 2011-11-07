@@ -23,9 +23,27 @@ App =
 		this
 	
 	fill: ->
-		$('#templ_editor').text("!!! 5\n%html\n    %head\n    %body\n        %h1 Say Hello")
-		$('#style_editor').text("body\n  background-color: hsl(0, 0, 0)\n  color: hsl(0, 0, 100)")
-		$('#script_editor').text("$ -> $('h1').append ', and wave goodbye'")
+		$('#templ_editor').text("""
+		!!! 5
+		%html
+		    %head
+		    %body
+		        %h1 Hey!!
+		""")
+		$('#style_editor').text("""
+			$size: 72px
+			
+			body
+			  background-color: hsl(350, 80, 60)
+			  color: hsl(0, 0, 95)
+			
+			h1
+			  font: $size 'Lucida Grande'
+
+			h2
+			  font: $size / 2 'Monaco'
+		""")
+		$('#script_editor').text("$ -> setTimeout (-> $('body').append '<h2>, it works!!</h2>'), 2000")
 		
 		this
 	
