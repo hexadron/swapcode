@@ -1,8 +1,14 @@
 - content_for :scripts do
 	%script{:type => "text/javascript", :src => "/js/lib/chosen.jquery.min.js"}
-	%script{:type => "text/javascript", :src => "/js/lib/codemirror.js"}
-	%script{:type => "text/javascript", :src => "/js/lib/modes/coffeescript.js"}
+	%script{:type => "text/javascript", :src => "/js/lib/ace.js"}
+	%script{:type => "text/javascript", :src => "/js/lib/mode-html.js"}
+	%script{:type => "text/javascript", :src => "/js/lib/mode-coffee.js"}
+	%script{:type => "text/javascript", :src => "/js/lib/mode-scss.js"}
+	%script{:type => "text/javascript", :src => "/js/lib/theme-dawn.js"}
 	%script{:type => "text/coffeescript", :src => "/js/swapcode.coffee"}
+
+- content_for :stylesheets do
+	%link{:rel => "stylesheet", :type => "text/css", :href => "/css/chosen.css"}
 
 .wrapper
 	%header
@@ -13,13 +19,7 @@
 			%select{"data-placeholder" => "Choose a templating Engine"}
 				%option{:value => "haml"} Haml
 				%option{:value => "html"} HTML5
-		%textarea.template
-			:preserve
-				!!! 5
-				%html
-					%head
-					%body
-						%h1 Say Hello
+		#templ_editor.ed
 
 		%h3 Choose a stylesheet engine
 		%div#select_style
@@ -27,18 +27,24 @@
 				%option{:value => "sass"} Sass
 				%option{:value => "less"} Less
 				%option{:value => "css"} CSS
-		%textarea.style
+		#style_editor.ed
 			:preserve
 				body
-					background-color: hsl(0, 0, 0)
-					color: hsl(0, 0, 100)
+				  background-color: hsl(0, 0, 0)
+				  color: hsl(0, 0, 100)
 		
 		%h3 Choose a scripting language
 		%div#select_script
 			%select{"data-placeholder" => "Choose a scripting language"}
 				%option{:value => "coffeescript"} CoffeeScript
 				%option{:value => "javascript"} JavaScript
-		%textarea.scripting
+		#script_editor.ed
 			:preserve
 				$ -> $('h1').append ', and wave goodbye'
 		%a.button{:href => ""} Compile
+		%span.link
+			Woa! your page lives
+			%a{:href => "", :target => "_blank"}
+		%section#errors
+			%h1 Compiling Errors:
+			%p.errs

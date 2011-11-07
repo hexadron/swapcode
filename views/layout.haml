@@ -2,9 +2,8 @@
 %html{lang: "es"}
 	%head
 		%meta{charset: "utf-8"}
-		%link{:rel => "stylesheet", :type => "text/css", :href => "/css/index.css"}
-		%link{:rel => "stylesheet", :type => "text/css", :href => "/css/chosen.css"}
 		=yield_content :stylesheets
+		%link{:rel => "stylesheet", :type => "text/css", :href => "/css/index.css"}
 		%title SwapCode
 	%body
 		=yield

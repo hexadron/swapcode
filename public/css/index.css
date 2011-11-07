@@ -64,33 +64,40 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* line 4, ../../assets/sass/index.sass */
+textarea, pre {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+/* line 9, ../../assets/sass/index.sass */
 em {
   font-style: oblique;
 }
 
-/* line 7, ../../assets/sass/index.sass */
+/* line 12, ../../assets/sass/index.sass */
 pre {
   font-family: "Monaco", "Menlo", "Meslo", "Consolas", monospace;
   line-height: 1.1em;
 }
 
-/* line 11, ../../assets/sass/index.sass */
+/* line 16, ../../assets/sass/index.sass */
 html {
   background: #292c3d;
   font-family: "Calibri", sans-serif;
 }
 
-/* line 15, ../../assets/sass/index.sass */
+/* line 20, ../../assets/sass/index.sass */
 header {
   color: white;
 }
-/* line 18, ../../assets/sass/index.sass */
+/* line 23, ../../assets/sass/index.sass */
 header h1 {
   font-size: 3em;
   margin: 0.3em;
 }
 
-/* line 22, ../../assets/sass/index.sass */
+/* line 27, ../../assets/sass/index.sass */
 .wrapper {
   min-width: 360px;
   max-width: 950px;
@@ -98,7 +105,7 @@ header h1 {
   margin-bottom: 1.5em;
 }
 
-/* line 28, ../../assets/sass/index.sass */
+/* line 33, ../../assets/sass/index.sass */
 .content {
   background: white;
   border-top: 0.25em solid #ff9933;
@@ -112,58 +119,58 @@ header h1 {
   box-shadow: 0px 0px 5px #333333;
 }
 
-/* line 37, ../../assets/sass/index.sass */
+/* line 42, ../../assets/sass/index.sass */
 .hero {
   margin-bottom: 1.5em;
 }
-/* line 40, ../../assets/sass/index.sass */
+/* line 45, ../../assets/sass/index.sass */
 .hero h2 {
   font-size: 2em;
   line-height: 1.5em;
 }
-/* line 44, ../../assets/sass/index.sass */
+/* line 49, ../../assets/sass/index.sass */
 .hero p {
   font-size: 1.35em;
   line-height: 1.5em;
   color: gray;
 }
 
-/* line 49, ../../assets/sass/index.sass */
+/* line 54, ../../assets/sass/index.sass */
 .human {
   float: left;
   width: 17em;
   margin: 0 0.3em;
 }
-/* line 54, ../../assets/sass/index.sass */
+/* line 59, ../../assets/sass/index.sass */
 .human h3 {
   font-size: 1.25em;
   line-height: 1.5em;
 }
-/* line 58, ../../assets/sass/index.sass */
+/* line 63, ../../assets/sass/index.sass */
 .human p {
   line-height: 1.5em;
 }
-/* line 61, ../../assets/sass/index.sass */
+/* line 66, ../../assets/sass/index.sass */
 .human pre {
   margin: 1em 0;
 }
 
-/* line 64, ../../assets/sass/index.sass */
+/* line 69, ../../assets/sass/index.sass */
 .keyword {
   color: #c37322;
 }
 
-/* line 67, ../../assets/sass/index.sass */
+/* line 72, ../../assets/sass/index.sass */
 .special {
   color: #407fbf;
 }
 
-/* line 70, ../../assets/sass/index.sass */
+/* line 75, ../../assets/sass/index.sass */
 .string {
   color: #339933;
 }
 
-/* line 73, ../../assets/sass/index.sass */
+/* line 78, ../../assets/sass/index.sass */
 .button {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #66aacc), color-stop(100%, #336699));
   background-image: -webkit-linear-gradient(#66aacc, #336699);
@@ -190,26 +197,60 @@ header h1 {
   text-shadow: 0 0.075em 0.1em #19334d;
 }
 
-/* line 85, ../../assets/sass/index.sass */
+/* line 90, ../../assets/sass/index.sass */
 .hero .button {
   font-size: 1.5em;
 }
 
-/* line 88, ../../assets/sass/index.sass */
+/* line 93, ../../assets/sass/index.sass */
+.link {
+  display: inline-block;
+  padding-left: 1.2em;
+  visibility: hidden;
+}
+/* line 97, ../../assets/sass/index.sass */
+.link a {
+  display: inline-block;
+}
+
+/* line 101, ../../assets/sass/index.sass */
+#errors h1 {
+  font-size: 1.5em;
+  color: #b81430;
+  display: none;
+}
+/* line 105, ../../assets/sass/index.sass */
+#errors p {
+  margin: 1.6em 0em;
+}
+
+/* line 108, ../../assets/sass/index.sass */
 .editor h3 {
   font-size: 1.2em;
   margin-bottom: 1em;
 }
 
-/* line 92, ../../assets/sass/index.sass */
+/* line 112, ../../assets/sass/index.sass */
 .editor select {
   width: 15em;
 }
 
-/* line 95, ../../assets/sass/index.sass */
-.editor textarea {
-  font-size: inherit;
-  margin: 1em 0;
+/* line 115, ../../assets/sass/index.sass */
+#templ_editor, #style_editor, #script_editor {
+  position: relative;
   height: 15em;
   width: 100%;
+  font-size: 14px;
+  line-height: 1.5em;
+  border: 1px solid gray;
+}
+
+/* line 123, ../../assets/sass/index.sass */
+.ace-dawn .ace_gutter {
+  width: 36px !important;
+}
+
+/* line 126, ../../assets/sass/index.sass */
+.ed.ace_editor.ace-dawn {
+  margin: 1.2em 0em;
 }

@@ -17,7 +17,7 @@ class SwapCode < Sinatra::Application
   post '/' do
     errors = {}
     
-    unless params[:haml] == ""
+    if params[:haml] != ""
       begin
         html = template(params[:templ_lang], params[:templ_code])
       rescue => err
@@ -38,7 +38,7 @@ class SwapCode < Sinatra::Application
     if errors.length > 0
       ActiveSupport::JSON.encode(errors)
     else
-      if params[:templ_code] == ""
+      if params[:templ_code].empty?
         content = ""
       else
         content = build_html(html, css, js)
