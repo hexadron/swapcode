@@ -43,7 +43,7 @@ App =
 			h2
 			  font: $size / 2 'Monaco'
 		""")
-		$('#script_editor').text("$ -> setTimeout (-> $('body').append '<h2>, it works!!</h2>'), 2000")
+		$('#script_editor').text("$ -> setTimeout (-> $('body').append '<h2>, it works!!</h2>'), 1200")
 		
 		this
 	
@@ -70,15 +70,13 @@ App =
 				App.showErrors(r)
 	
 	showLink: (link) ->
-		$('.link a').attr('href', link).text('here')
+		$('.link a').attr('href', link).text(link)
 		$('.link').css('visibility', 'visible')
 		
-	showErrors: (errors) ->
+	showErrors: (errors) ->		
 		$('#errors h1').fadeIn('fast')
 		$('#errors p.errs').text("")
 		$('#errors p.errs').append "#{e}: #{errors[e]}<br>" for e of errors
-		
-		
 		
 	urlRegex: /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
 		

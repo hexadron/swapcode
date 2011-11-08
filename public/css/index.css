@@ -210,32 +210,38 @@ header h1 {
 }
 /* line 97, ../../assets/sass/index.sass */
 .link a {
+  color: #1f5c7a;
   display: inline-block;
+  text-decoration: none;
+}
+/* line 101, ../../assets/sass/index.sass */
+.link a:hover {
+  color: #1f7ead;
 }
 
-/* line 101, ../../assets/sass/index.sass */
+/* line 105, ../../assets/sass/index.sass */
 #errors h1 {
   font-size: 1.5em;
   color: #b81430;
   display: none;
 }
-/* line 105, ../../assets/sass/index.sass */
+/* line 109, ../../assets/sass/index.sass */
 #errors p {
   margin: 1.6em 0em;
 }
 
-/* line 108, ../../assets/sass/index.sass */
+/* line 112, ../../assets/sass/index.sass */
 .editor h3 {
   font-size: 1.2em;
   margin-bottom: 1em;
 }
 
-/* line 112, ../../assets/sass/index.sass */
+/* line 116, ../../assets/sass/index.sass */
 .editor select {
   width: 15em;
 }
 
-/* line 115, ../../assets/sass/index.sass */
+/* line 119, ../../assets/sass/index.sass */
 #templ_editor, #style_editor, #script_editor {
   position: relative;
   height: 15em;
@@ -245,12 +251,12 @@ header h1 {
   border: 1px solid gray;
 }
 
-/* line 123, ../../assets/sass/index.sass */
+/* line 127, ../../assets/sass/index.sass */
 .ace-dawn .ace_gutter {
   width: 36px !important;
 }
 
-/* line 126, ../../assets/sass/index.sass */
+/* line 130, ../../assets/sass/index.sass */
 .ed.ace_editor.ace-dawn {
   margin: 1.2em 0em;
 }
