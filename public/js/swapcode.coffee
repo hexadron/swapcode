@@ -72,7 +72,7 @@ App =
     $('.link a').attr('href', link).text(link)
     $('.link').css('visibility', 'visible')
 
-  showErrors: (errors) ->		
+  showErrors: (errors) ->
     $('#errors h1').fadeIn('fast')
     $('#errors p.errs').text("")
     $('#errors p.errs').append "#{e}: #{errors[e]}<br>" for e of errors
