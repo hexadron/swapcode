@@ -8,6 +8,7 @@ App =
   modes:
     Html:   require("ace/mode/html").Mode
     Sass:   require("ace/mode/scss").Mode
+    JS:     require("ace/mode/javascript").Mode
     Coffee: require("ace/mode/coffee").Mode
 
   launchEditors: ->
@@ -47,6 +48,7 @@ App =
 	
   delegate: ->
     $('.editor .button').click @send
+    $('#select_script select').change @swapSyntax
 	
   send: (e) ->
     e.preventDefault()
@@ -64,9 +66,13 @@ App =
       r = JSON.parse res
       if r.url? && r.url.match(App.urlRegex)
         App.showLink(r.url)
+        App.changeButton()
         $('html').data('_id', r.id)
       else
         App.showErrors(r)
+  
+  changeButton: ->
+    $('.editor .button').text('Update')
 
   showLink: (link) ->
     $('.link a').attr('href', link).text(link)
@@ -76,6 +82,13 @@ App =
     $('#errors h1').fadeIn('fast')
     $('#errors p.errs').text("")
     $('#errors p.errs').append "#{e}: #{errors[e]}<br>" for e of errors
+
+  swapSyntax: (e) ->
+    switch e.target.value
+      when 'javascript'
+        App.script.getSession().setMode(new App.modes.JS())
+      when 'coffeescript'
+        App.script.getSession().setMode(new App.modes.Coffee())
 
   urlRegex: /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
 
