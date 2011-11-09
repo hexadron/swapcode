@@ -4,11 +4,11 @@ App =
     App.fill()
     App.launchEditors()
     App.delegate()
-
+ 
   modes:
     Html:   require("ace/mode/html").Mode
     Sass:   require("ace/mode/scss").Mode
-    JS:     require("ace/mode/javascript").Mode
+    Js:     require("ace/mode/javascript").Mode
     Coffee: require("ace/mode/coffee").Mode
 
   launchEditors: ->
@@ -48,7 +48,7 @@ App =
 	
   delegate: ->
     $('.editor .button').click @send
-    $('#select_script select').change @swapSyntax
+    $('select').change @swapSyntax
 	
   send: (e) ->
     e.preventDefault()
@@ -75,6 +75,8 @@ App =
     $('.editor .button').text('Update')
 
   showLink: (link) ->
+    $('#errors p.errs').text("")
+    $('#errors h1').fadeOut('fast')
     $('.link a').attr('href', link).text(link)
     $('.link').css('visibility', 'visible')
 
@@ -86,7 +88,7 @@ App =
   swapSyntax: (e) ->
     switch e.target.value
       when 'javascript'
-        App.script.getSession().setMode(new App.modes.JS())
+        App.script.getSession().setMode(new App.modes.Js())
       when 'coffeescript'
         App.script.getSession().setMode(new App.modes.Coffee())
 
