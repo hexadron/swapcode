@@ -1,50 +1,50 @@
 - content_for :scripts do
-	%script{:type => "text/javascript", :src => "/js/lib/chosen.jquery.min.js"}
-	%script{:type => "text/javascript", :src => "/js/lib/ace.js"}
-	%script{:type => "text/javascript", :src => "/js/lib/mode-html.js"}
-	%script{:type => "text/javascript", :src => "/js/lib/mode-coffee.js"}
-	%script{:type => "text/javascript", :src => "/js/lib/mode-scss.js"}
-	%script{:type => "text/javascript", :src => "/js/lib/theme-dawn.js"}
-	%script{:type => "text/coffeescript", :src => "/js/swapcode.coffee"}
+  %script{:type => "text/javascript", :src => "/js/lib/chosen.jquery.min.js"}
+  %script{:type => "text/javascript", :src => "/js/lib/ace.js"}
+  %script{:type => "text/javascript", :src => "/js/lib/mode-html.js"}
+  %script{:type => "text/javascript", :src => "/js/lib/mode-coffee.js"}
+  %script{:type => "text/javascript", :src => "/js/lib/mode-scss.js"}
+  %script{:type => "text/javascript", :src => "/js/lib/theme-dawn.js"}
+  %script{:type => "text/coffeescript", :src => "/js/swapcode.coffee"}
 
 - content_for :stylesheets do
-	%link{:rel => "stylesheet", :type => "text/css", :href => "/css/chosen.css"}
+  %link{:rel => "stylesheet", :type => "text/css", :href => "/css/chosen.css"}
 
 .wrapper
-	%header
-		%h1 Swapcode
-	.content.editor
-		%h3 Choose a templating engine
-		%div#select_template
-			%select{"data-placeholder" => "Choose a templatingg Engine"}
-				%option{:value => "haml"} Haml
-				%option{:value => "html"} HTML5
-		#templ_editor.ed
+  %header
+    %h1 Swapcode
+  .content.editor
+    %h3 Choose a templating engine
+    %div#select_template
+      %select{"data-placeholder" => "Choose a templatingg Engine"}
+        %option{:value => "haml"} Haml
+        %option{:value => "html"} HTML5
+    #templ_editor.ed
 
-		%h3 Choose a stylesheet engine
-		%div#select_style
-			%select{"data-placeholder" => "Choose a stylesheet engine"}
-				%option{:value => "sass"} Sass
-				%option{:value => "less"} Less
-				%option{:value => "css"} CSS
-		#style_editor.ed
-			:preserve
-				body
-				  background-color: hsl(0, 0, 0)
-				  color: hsl(0, 0, 100)
-		
-		%h3 Choose a scripting language
-		%div#select_script
-			%select{"data-placeholder" => "Choose a scripting language"}
-				%option{:value => "coffeescript"} CoffeeScript
-				%option{:value => "javascript"} JavaScript
-		#script_editor.ed
-			:preserve
-				$ -> $('h1').append ', and wave goodbye'
-		%a.button{:href => ""} Compile
-		%span.link
-			Woah! your page lives in
-			%a{:href => "", :target => "_blank"}
-		%section#errors
-			%h1 Compiling Errors:
-			%p.errs
+    %h3 Choose a stylesheet engine
+    %div#select_style
+      %select{"data-placeholder" => "Choose a stylesheet engine"}
+        %option{:value => "sass"} Sass
+        %option{:value => "less"} Less
+        %option{:value => "css"} CSS
+    #style_editor.ed
+      :preserve
+        body
+          background-color: hsl(0, 0, 0)
+          color: hsl(0, 0, 100)
+
+    %h3 Choose a scripting language
+    %div#select_script
+      %select{"data-placeholder" => "Choose a scripting language"}
+        %option{:value => "coffeescript"} CoffeeScript
+        %option{:value => "javascript"} JavaScript
+    #script_editor.ed
+      :preserve
+        $ -> $('h1').append ', and wave goodbye'
+    %a.button{:href => ""} Compile
+    %span.link
+      Woah! your page lives in
+      %a{:href => "", :target => "_blank"}
+    %section#errors
+      %h1 Compiling Errors:
+      %p.errs

@@ -1,7 +1,9 @@
 App =
 	start: ->
 		$('select').chosen()
-		App.fill().launchEditors().delegate()
+		App.fill()
+		App.launchEditors()
+		App.delegate()
 	
 	modes:
 		Html: 	require("ace/mode/html").Mode
@@ -19,8 +21,6 @@ App =
 		
 		[App.template, App.style, App.script].map (e) ->
 			e.setTheme('ace/theme/dawn')
-			
-		this
 	
 	fill: ->
 		$('#templ_editor').text("""
@@ -44,8 +44,6 @@ App =
 			  font: $size / 2 'Monaco'
 		""")
 		$('#script_editor').text("$ -> setTimeout (-> $('body').append '<h2>, it works!!</h2>'), 1200")
-		
-		this
 	
 	delegate: ->
 		$('.editor .button').click @send

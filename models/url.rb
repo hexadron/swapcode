@@ -7,7 +7,7 @@ class Url < ActiveRecord::Base
   validates_uniqueness_of :url
   
   def gen_url
-    self.url ||= Digest::MD5.hexdigest(Time.now.to_s)
+    self.url ||= Digest::MD5.hexdigest(Time.now.to_s) + rand(1000).to_s
     
     self
   end

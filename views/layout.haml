@@ -1,12 +1,12 @@
 !!! 5
 %html{lang: "es"}
-	%head
-		%meta{charset: "utf-8"}
-		=yield_content :stylesheets
-		%link{:rel => "stylesheet", :type => "text/css", :href => "/css/index.css"}
-		%title SwapCode
-	%body
-		=yield
-		%script{type: "text/javascript", src: "/js/lib/jquery.min.js"}
-		=yield_content :scripts
-		%script{type: "text/javascript", src: "/js/lib/coffee-script.js"}
+  %head
+    %meta{charset: "utf-8"}
+    =yield_content :stylesheets
+    %link{:rel => "stylesheet", :type => "text/css", :href => "/css/index.css"}
+    %title SwapCode
+  %body
+    =yield
+    %script{type: "text/javascript", src: "/js/lib/jquery.min.js"}
+    =yield_content :scripts
+    %script{type: "text/javascript", src: "/js/lib/coffee-script.js"}
