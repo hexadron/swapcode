@@ -1,5 +1,5 @@
 App =
-	start: ->
+  start: ->
 		$('select').chosen()
 		App.fill()
 		App.launchEditors()
