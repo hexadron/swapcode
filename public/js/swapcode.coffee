@@ -6,8 +6,8 @@ App =
     App.delegate()
 
   modes:
-    Html: 	require("ace/mode/html").Mode
-    Sass: 	require("ace/mode/scss").Mode
+    Html:   require("ace/mode/html").Mode
+    Sass:   require("ace/mode/scss").Mode
     Coffee: require("ace/mode/coffee").Mode
 
   launchEditors: ->
@@ -50,6 +50,7 @@ App =
 	
   send: (e) ->
     e.preventDefault()
+    
     src = 
       id:         $('html').data('_id')
       templ_lang: $('#select_template select').val()
