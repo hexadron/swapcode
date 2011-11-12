@@ -15,48 +15,46 @@ class SwapCode < Sinatra::Application
   end
 
   post '/' do
-    errors = {}
+    return "" if params[:templ_code].empty?
     
-    if params[:haml] != ""
-      begin
-        html = template(params[:templ_lang], params[:templ_code])
-      rescue => err
-        errors[params[:templ_lang]] = err.to_s
-      end
-      begin
-        js = script(params[:scrpt_lang], params[:scrpt_code])
-      rescue => err
-        errors[params[:scrpt_lang]] = err.to_s
-      end
-      begin
-        css = style(params[:style_lang], params[:style_code])
-      rescue => err
-        errors[params[:style_lang]] = err.to_s
-      end
-    end
-    
-    if errors.length > 0
-      ActiveSupport::JSON.encode(errors)
-    else
-      if params[:templ_code].empty?
-        content = ""
+    get_web params do |code, errors|
+      return ActiveSupport::JSON.encode(errors) if errors.length > 0
+      
+      page = if params[:id]
+        u = Url.find_by_id(params[:id])
+        u.content = code
+        u
       else
-        content = build_html(html, css, js)
+        Url.new({:content => code})
       end
       
-      if params[:id]
-        u = Url.find_by_id(params[:id])
-        u.content = content
-        u.save
-      else
-        u = Url.new({:content => content})
-        u.save
-      end
-      id_and_url = { :id => u.id, :url => "#{base_url}/view/#{u.url}"}
-      ActiveSupport::JSON.encode(id_and_url)
+      page.save
+      jstring = {id: page.id, url: "#{base_url}/view/#{page.url}"}
+
+      return ActiveSupport::JSON.encode(jstring)
     end
   end
   
+  def get_web data
+    errs = {}
+    
+    html = handle errs, params[:templ_lang] { template(params[:templ_lang], params[:templ_code]) }
+    css  = handle errs, params[:style_lang] { style(params[:style_lang], params[:style_code]) }
+    js   = handle errs, params[:scrpt_lang] { script(params[:scrpt_lang], params[:scrpt_code]) }
+    
+    content = build_html html, css, js
+    
+    yield content, errs
+  end
+  
+  def handle errs, type
+    begin
+      yield
+    rescue => e
+      errs[type] = e.to_s
+    end
+  end
+
   def template(lang, code)
     case lang
     when 'html'
@@ -91,8 +89,9 @@ class SwapCode < Sinatra::Application
     with_js = append_at html, js_pos, 
       "<script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
       <script type='text/javascript'>#{js}</script>"
+      
     css_pos = with_js.index('</head>')
-    
+        
     append_at(with_js, css_pos, "<style>#{css}</style>")
   end
   
