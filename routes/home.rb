@@ -21,11 +21,11 @@ class SwapCode < Sinatra::Application
       return ActiveSupport::JSON.encode(errors) if errors.length > 0
       
       page = if params[:id]
-        u = Url.find_by_id(params[:id])
-        u.content = code
-        u
+        p = Page.find_by_id(params[:id])
+        p.content = code
+        p
       else
-        Url.new({:content => code})
+        Page.new({:content => code})
       end
       
       page.save
