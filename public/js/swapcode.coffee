@@ -49,6 +49,7 @@ App =
   delegate: ->
     $('.editor .button').click @send
     $('select').change @swapSyntax
+    $('#open a').click @openUrl
 	
   send: (e) ->
     e.preventDefault()
@@ -62,7 +63,7 @@ App =
       scrpt_lang: $('#select_script select').val()
       scrpt_code: App.script.getSession().getValue()
 
-    $.post '/', src, (res) ->
+    $.post '/page/create', src, (res) ->
       r = JSON.parse res
       if r.url? && r.url.match(App.urlRegex)
         App.showLink(r.url)
@@ -84,6 +85,29 @@ App =
     $('#errors h1').fadeIn('fast')
     $('#errors p.errs').text("")
     $('#errors p.errs').append "#{e}: #{errors[e]}<br>" for e of errors
+  
+  openUrl: (e) ->
+    e.preventDefault()
+    url = $('#open input').val()
+    return null unless url.match(App.urlRegex)
+    
+    $.get '/page/open', {url: url}, (res) ->
+      r = JSON.parse(res)
+      if r.page?
+        p = r.page
+        App.openPage(p)
+      else
+        console.log r
+  
+  openPage: (p) ->
+    $('html').data('_id', p.id)
+    $('#select_template select').val p.templ_lang
+    App.template.getSession().setValue p.templ_code
+    $('#select_style select').val p.style_lang
+    App.style.getSession().setValue p.style_code
+    $('#select_script select').val p.script_lang
+    App.script.getSession().setValue p.script_code
+    App.showLink p.url
 
   swapSyntax: (e) ->
     switch e.target.value

@@ -20,13 +20,25 @@ html
 header
   +background_image(linear_gradient(hsl(200, 50, 60), hsl(210, 50, 40)))
   color: white
+  overflow: hidden
 
   h1
+    float: left
     font-size: 3em
     font-family: "Eurostile", "Menlo", "Consolas", sans-serif
     padding: 0.4em
     padding-bottom: 0.45em
     text-shadow: 0 0.05em 0.05em hsl(210, 50, 20)
+  
+  #open
+    float: right
+    padding: 0.35em 1em
+    
+    input
+      font: 1.1em "Calibri", sans-serif
+      margin-right: 0.5em
+      width: 15em
+      padding: 0.3em
 
 .wrapper
   background: white
