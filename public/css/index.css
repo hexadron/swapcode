@@ -90,14 +90,29 @@ html {
 /* line 20, ../../assets/sass/index.sass */
 header {
   color: white;
+  overflow: hidden;
 }
-/* line 23, ../../assets/sass/index.sass */
+/* line 24, ../../assets/sass/index.sass */
 header h1 {
   font-size: 3em;
   margin: 0.3em;
+  float: left;
+}
+/* line 29, ../../assets/sass/index.sass */
+header #open {
+  position: relative;
+  top: 0.4em;
+  float: right;
+}
+/* line 34, ../../assets/sass/index.sass */
+header #open input {
+  font: 1.1em "Calibri", sans-serif;
+  margin-right: 0.8em;
+  width: 15em;
+  padding: 0.3em;
 }
 
-/* line 27, ../../assets/sass/index.sass */
+/* line 40, ../../assets/sass/index.sass */
 .wrapper {
   min-width: 360px;
   max-width: 950px;
@@ -105,7 +120,7 @@ header h1 {
   margin-bottom: 1.5em;
 }
 
-/* line 33, ../../assets/sass/index.sass */
+/* line 46, ../../assets/sass/index.sass */
 .content {
   background: white;
   border-top: 0.25em solid #ff9933;
@@ -119,58 +134,58 @@ header h1 {
   box-shadow: 0px 0px 5px #333333;
 }
 
-/* line 42, ../../assets/sass/index.sass */
+/* line 55, ../../assets/sass/index.sass */
 .hero {
   margin-bottom: 1.5em;
 }
-/* line 45, ../../assets/sass/index.sass */
+/* line 58, ../../assets/sass/index.sass */
 .hero h2 {
   font-size: 2em;
   line-height: 1.5em;
 }
-/* line 49, ../../assets/sass/index.sass */
+/* line 62, ../../assets/sass/index.sass */
 .hero p {
   font-size: 1.35em;
   line-height: 1.5em;
   color: gray;
 }
 
-/* line 54, ../../assets/sass/index.sass */
+/* line 67, ../../assets/sass/index.sass */
 .human {
   float: left;
   width: 17em;
   margin: 0 0.3em;
 }
-/* line 59, ../../assets/sass/index.sass */
+/* line 72, ../../assets/sass/index.sass */
 .human h3 {
   font-size: 1.25em;
   line-height: 1.5em;
 }
-/* line 63, ../../assets/sass/index.sass */
+/* line 76, ../../assets/sass/index.sass */
 .human p {
   line-height: 1.5em;
 }
-/* line 66, ../../assets/sass/index.sass */
+/* line 79, ../../assets/sass/index.sass */
 .human pre {
   margin: 1em 0;
 }
 
-/* line 69, ../../assets/sass/index.sass */
+/* line 82, ../../assets/sass/index.sass */
 .keyword {
   color: #c37322;
 }
 
-/* line 72, ../../assets/sass/index.sass */
+/* line 85, ../../assets/sass/index.sass */
 .special {
   color: #407fbf;
 }
 
-/* line 75, ../../assets/sass/index.sass */
+/* line 88, ../../assets/sass/index.sass */
 .string {
   color: #339933;
 }
 
-/* line 78, ../../assets/sass/index.sass */
+/* line 91, ../../assets/sass/index.sass */
 .button {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #66aacc), color-stop(100%, #336699));
   background-image: -webkit-linear-gradient(#66aacc, #336699);
@@ -197,51 +212,51 @@ header h1 {
   text-shadow: 0 0.075em 0.1em #19334d;
 }
 
-/* line 90, ../../assets/sass/index.sass */
+/* line 103, ../../assets/sass/index.sass */
 .hero .button {
   font-size: 1.5em;
 }
 
-/* line 93, ../../assets/sass/index.sass */
+/* line 106, ../../assets/sass/index.sass */
 .link {
   display: inline-block;
   padding-left: 1.2em;
   visibility: hidden;
 }
-/* line 97, ../../assets/sass/index.sass */
+/* line 110, ../../assets/sass/index.sass */
 .link a {
   color: #1f5c7a;
   display: inline-block;
   text-decoration: none;
 }
-/* line 101, ../../assets/sass/index.sass */
+/* line 114, ../../assets/sass/index.sass */
 .link a:hover {
   color: #1f7ead;
 }
 
-/* line 105, ../../assets/sass/index.sass */
+/* line 118, ../../assets/sass/index.sass */
 #errors h1 {
   font-size: 1.5em;
   color: #b81430;
   display: none;
 }
-/* line 109, ../../assets/sass/index.sass */
+/* line 122, ../../assets/sass/index.sass */
 #errors p {
   margin: 1.6em 0em;
 }
 
-/* line 112, ../../assets/sass/index.sass */
+/* line 125, ../../assets/sass/index.sass */
 .editor h3 {
   font-size: 1.2em;
   margin-bottom: 1em;
 }
 
-/* line 116, ../../assets/sass/index.sass */
+/* line 129, ../../assets/sass/index.sass */
 .editor select {
   width: 15em;
 }
 
-/* line 119, ../../assets/sass/index.sass */
+/* line 132, ../../assets/sass/index.sass */
 #templ_editor, #style_editor, #script_editor {
   position: relative;
   height: 15em;
@@ -251,12 +266,12 @@ header h1 {
   border: 1px solid gray;
 }
 
-/* line 127, ../../assets/sass/index.sass */
+/* line 140, ../../assets/sass/index.sass */
 .ace-dawn .ace_gutter {
   width: 36px !important;
 }
 
-/* line 130, ../../assets/sass/index.sass */
+/* line 143, ../../assets/sass/index.sass */
 .ed.ace_editor.ace-dawn {
   margin: 1.2em 0em;
 }

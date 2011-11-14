@@ -31,7 +31,8 @@
     },
     delegate: function() {
       $('.editor .button').click(this.send);
-      return $('select').change(this.swapSyntax);
+      $('select').change(this.swapSyntax);
+      return $('#open a').click(this.openUrl);
     },
     send: function(e) {
       var src;
@@ -45,7 +46,7 @@
         scrpt_lang: $('#select_script select').val(),
         scrpt_code: App.script.getSession().getValue()
       };
-      return $.post('/', src, function(res) {
+      return $.post('/page/create', src, function(res) {
         var r;
         r = JSON.parse(res);
         if ((r.url != null) && r.url.match(App.urlRegex)) {
@@ -75,6 +76,36 @@
         _results.push($('#errors p.errs').append("" + e + ": " + errors[e] + "<br>"));
       }
       return _results;
+    },
+    openUrl: function(e) {
+      var url;
+      e.preventDefault();
+      url = $('#open input').val();
+      if (!url.match(App.urlRegex)) {
+        return null;
+      }
+      return $.get('/page/open', {
+        url: url
+      }, function(res) {
+        var p, r;
+        r = JSON.parse(res);
+        if (r.page != null) {
+          p = r.page;
+          return App.openPage(p);
+        } else {
+          return console.log(r);
+        }
+      });
+    },
+    openPage: function(p) {
+      $('html').data('_id', p.id);
+      $('#select_template select').val(p.templ_lang);
+      App.template.getSession().setValue(p.templ_code);
+      $('#select_style select').val(p.style_lang);
+      App.style.getSession().setValue(p.style_code);
+      $('#select_script select').val(p.script_lang);
+      App.script.getSession().setValue(p.script_code);
+      return App.showLink(p.url);
     },
     swapSyntax: function(e) {
       switch (e.target.value) {
