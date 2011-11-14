@@ -29,7 +29,7 @@ App =
       %html
         %head
         %body
-          %h1 Hey!!
+          %h1 Hey!
     """)
     $('#style_editor').text("""
       $size: 72px
@@ -39,12 +39,12 @@ App =
         color: hsl(0, 0, 95)
 
       h1
-        font: $size 'Lucida Grande'
+        font: $size 'Comic Sans MS'
 
       h2
         font: $size / 2 'Monaco'
     """)
-    $('#script_editor').text("$ -> setTimeout (-> $('body').append '<h2>, it works!!</h2>'), 1200")
+    $('#script_editor').text("$ -> setTimeout (-> $('body').append '<h2>It works!</h2>'), 1200")
 	
   delegate: ->
     $('.editor .button').click @send
