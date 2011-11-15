@@ -50,6 +50,7 @@ App =
     $('.editor .button').click @send
     $('select').change @swapSyntax
     $('#open a').click @openUrl
+    $('#open input').keydown (e) -> if e.which is 13 then App.openUrl(e)
 	
   send: (e) ->
     e.preventDefault()
@@ -67,7 +68,6 @@ App =
       r = JSON.parse res
       if r.url? && r.url.match(App.urlRegex)
         App.showLink(r.url)
-        App.changeButton()
         $('html').data('_id', r.id)
       else
         App.showErrors(r)
@@ -76,10 +76,12 @@ App =
     $('.editor .button').text('Update')
 
   showLink: (link) ->
+    link = "#{window.location.origin}/views/#{link}"
     $('#errors p.errs').text("")
     $('#errors h1').fadeOut('fast')
     $('.link a').attr('href', link).text(link)
     $('.link').css('visibility', 'visible')
+    App.changeButton()
 
   showErrors: (errors) ->
     $('#errors h1').fadeIn('fast')

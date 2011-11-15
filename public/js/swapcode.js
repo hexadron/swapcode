@@ -25,14 +25,19 @@
       });
     },
     fill: function() {
-      $('#templ_editor').text("!!! 5\n%html\n  %head\n  %body\n    %h1 Hey!!");
-      $('#style_editor').text("$size: 72px\n\nbody\n  background-color: hsl(350, 80, 60)\n  color: hsl(0, 0, 95)\n\nh1\n  font: $size 'Lucida Grande'\n\nh2\n  font: $size / 2 'Monaco'");
-      return $('#script_editor').text("$ -> setTimeout (-> $('body').append '<h2>, it works!!</h2>'), 1200");
+      $('#templ_editor').text("!!! 5\n%html\n  %head\n  %body\n    %h1 Hey!");
+      $('#style_editor').text("$size: 72px\n\nbody\n  background-color: hsl(350, 80, 60)\n  color: hsl(0, 0, 95)\n\nh1\n  font: $size 'Comic Sans MS'\n\nh2\n  font: $size / 2 'Monaco'");
+      return $('#script_editor').text("$ -> setTimeout (-> $('body').append '<h2>It works!</h2>'), 1200");
     },
     delegate: function() {
       $('.editor .button').click(this.send);
       $('select').change(this.swapSyntax);
-      return $('#open a').click(this.openUrl);
+      $('#open a').click(this.openUrl);
+      return $('#open input').keydown(function(e) {
+        if (e.which === 13) {
+          return App.openUrl(e);
+        }
+      });
     },
     send: function(e) {
       var src;
@@ -51,7 +56,6 @@
         r = JSON.parse(res);
         if ((r.url != null) && r.url.match(App.urlRegex)) {
           App.showLink(r.url);
-          App.changeButton();
           return $('html').data('_id', r.id);
         } else {
           return App.showErrors(r);
@@ -62,10 +66,12 @@
       return $('.editor .button').text('Update');
     },
     showLink: function(link) {
+      link = "" + window.location.origin + "/views/" + link;
       $('#errors p.errs').text("");
       $('#errors h1').fadeOut('fast');
       $('.link a').attr('href', link).text(link);
-      return $('.link').css('visibility', 'visible');
+      $('.link').css('visibility', 'visible');
+      return App.changeButton();
     },
     showErrors: function(errors) {
       var e, _results;
