@@ -76,7 +76,6 @@ App =
     $('.editor .button').text('Update')
 
   showLink: (link) ->
-    link = "#{window.location.origin}/views/#{link}"
     $('#errors p.errs').text("")
     $('#errors h1').fadeOut('fast')
     $('.link a').attr('href', link).text(link)
@@ -109,7 +108,7 @@ App =
     App.style.getSession().setValue p.style_code
     $('#select_script select').val p.script_lang
     App.script.getSession().setValue p.script_code
-    App.showLink p.url
+    App.showLink "#{window.location.origin}/view/#{p.url}"
 
   swapSyntax: (e) ->
     switch e.target.value

@@ -66,7 +66,6 @@
       return $('.editor .button').text('Update');
     },
     showLink: function(link) {
-      link = "" + window.location.origin + "/views/" + link;
       $('#errors p.errs').text("");
       $('#errors h1').fadeOut('fast');
       $('.link a').attr('href', link).text(link);
@@ -111,7 +110,7 @@
       App.style.getSession().setValue(p.style_code);
       $('#select_script select').val(p.script_lang);
       App.script.getSession().setValue(p.script_code);
-      return App.showLink(p.url);
+      return App.showLink("" + window.location.origin + "/view/" + p.url);
     },
     swapSyntax: function(e) {
       switch (e.target.value) {
